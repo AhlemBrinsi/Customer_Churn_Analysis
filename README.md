@@ -16,7 +16,7 @@
 ---
 
 ## Project Overview
-This project analyzes customer churn for a telecommunications company using **Python, SQL, and Power BI**. The main goal is to identify high-risk segments and provide actionable insights to reduce churn and maximize customer retention.
+This project analyzes customer churn for a telecommunications company using **Python, SQL, and Power BI**. The main goal is to identify high-risk segments and provide actionable insights to reduce churn and maximize customer retention.  
 
 **Key Objectives:**  
 - Understand customer behavior and churn drivers  
@@ -53,7 +53,7 @@ This project analyzes customer churn for a telecommunications company using **Py
 2. Standardized service columns (`No phone service` / `No internet service` → `No`)  
 3. Encoded binary columns to 0/1: `Churn`, `Partner`, `Dependents`, `PhoneService`, `PaperlessBilling`, and services  
 4. Dropped `customerID` as it is a unique identifier with no analytical value  
-5. Created engineered features:
+5. Created engineered features:  
    - **TenureCategory:** New, Short-term, Medium-term, Long-term  
    - **EngagementScore:** Sum of subscribed services  
    - **ContractRisk:** Month-to-month = 2, One year = 1, Two year = 0  
@@ -62,7 +62,6 @@ This project analyzes customer churn for a telecommunications company using **Py
 ---
 
 ## Exploratory Data Analysis (EDA)
-
 **Overall Churn Rate:** 26.58%  
 
 ### Churn by Key Segments
@@ -71,7 +70,7 @@ This project analyzes customer churn for a telecommunications company using **Py
 | Contract: Month-to-month       | 42.71          |
 | TenureCategory: New            | 53.33          |
 | PaymentMethod: Electronic check| 45.29          |
-| InternetService: Fiber optic  | Higher churn   |
+| InternetService: Fiber optic   | Higher churn   |
 
 **Insights:**  
 - Month-to-month contracts and new customers have the highest churn  
@@ -82,7 +81,6 @@ This project analyzes customer churn for a telecommunications company using **Py
 ---
 
 ## Top 5 High-Risk Customer Segments
-
 | Contract Type   | TenureCategory | EngagementScore | Total Customers | Churned Customers | Churn Rate (%) |
 |-----------------|----------------|-----------------|----------------|-----------------|----------------|
 | Month-to-month  | New            | 6               | 12             | 8               | 66.67          |
@@ -101,7 +99,7 @@ This project analyzes customer churn for a telecommunications company using **Py
 ---
 
 ## SQL Analysis
-- Aggregations and segmentations done using SQL queries for:
+- Aggregations and segmentations done using SQL queries for:  
   - Churn by Contract type, TenureCategory, EngagementScore  
   - Churn by PaymentMethod  
   - Identification of high-risk segments  
@@ -117,9 +115,45 @@ This project analyzes customer churn for a telecommunications company using **Py
 ---
 
 ## Power BI Dashboard Blueprint
-- **Overview Page:** KPI cards (Total Customers, Churned Customers, Churn Rate, Revenue at Risk)  
-- **Segments Page:** Bar charts & slicers for Contract Type, TenureCategory, EngagementScore, PaymentMethod, InternetService  
-- **Insights Page:** Top 5 high-risk segments table, actionable recommendations panel  
+
+**Page 1: Overview / KPIs**  
+- **Top KPI Cards:**  
+  - Total Customers: 7,032  
+  - Churned Customers: 1,869  
+  - Churn Rate: 26.58%  
+  - Average Engagement Score: 3.2  
+- **Charts:**  
+  - Donut Chart: Churn distribution (Yes vs No)  
+  - Histogram: Monthly Charges distribution  
+- **Slicers / Filters:** None on this page, to keep the overview clear  
+- **Drill-through:** Click on Churn Rate or other KPIs to see detailed churn breakdown by features such as Contract Type, Tenure Category, Payment Method, Internet Service, etc  
+
+**Page 2: Churn by Customer Segments**  
+- **Bar Charts:**  
+  - Churn Rate by Contract Type (Month-to-month, One Year, Two Year)  
+  - Churn Rate by Tenure Category (New, Short-term, Medium-term, Long-term)  
+  - Churn Rate by Payment Method (Electronic Check, Bank Transfer, etc.)  
+  - Churn Rate by Internet Service (DSL, Fiber Optic, No Service)  
+- **Slicers / Filters:**  
+  - Gender (Male/Female)  
+  - Has Partner (Yes/No)  
+  - Engagement Score Range  
+  - Financial Pressure Range  
+- **Drill-through:** Clicking on a Contract Type leads to the final page table, summarizing churn for each contract type, including Tenure Category, Total Customers, Churned Customers, and Churn Rate (%)  
+
+**Page 3: High-Risk Customer Segments & Key Insights**  
+- **Table / Matrix:**  
+  - Columns: Contract, TenureCategory, EngagementScore, Total Customers, Churned Customers, Churn Rate (%)  
+  - Conditional formatting highlights high churn rate segments  
+  - Ordered by Contract Type → Tenure Category → Engagement Score for clarity  
+- **Insights / Recommendations:**  
+  - Month-to-month contracts have the highest churn  
+  - New and short-tenure customers are more likely to churn  
+  - Customers paying via electronic check are at higher risk  
+  - Suggested actions:  
+    - Improve onboarding for new customers  
+    - Offer incentives for month-to-month contract holders  
+    - Introduce alternative payment reminders or promotions  
 
 ---
 
